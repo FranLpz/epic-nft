@@ -10,6 +10,8 @@ import "hardhat/console.sol";
 // We inherit the contract we imported. This means we'll have access
 // to the inherited contract's methods.
 contract MyEpicNFT is ERC721URIStorage {
+    // Magic given to us by OpenZeppelin to help us keep track of tokenIds.
+    using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     
     // We need to pass the name of our NFTs token and it's symbol.
@@ -28,7 +30,7 @@ contract MyEpicNFT is ERC721URIStorage {
         // Set the NFTs data.
         _setTokenURI(newItemId, "https://jsonkeeper.com/b/A44Y");
         console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-        
+
         // Increment the counter for when the next NFT is minted.
         _tokenIds.increment();
     }
